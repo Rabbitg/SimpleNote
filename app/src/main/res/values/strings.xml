@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Todo List</string>
+    <string name="add_todo_str">Buat Todo</string>
+    <string name="app_title"> </string>
+    <string name="title_hint">제목을 입력해주세요.</string>
+    <string name="description_hint">무엇을 하셨나요?</string>
+    <string name="submit_hint">추가</string>
+    <string name="add_todo_title">무엇을 하셨나요?</string>
+    <string name="gmd_done">삭제</string>
+    <string name="gmd_mode_edit">수정</string>
+</resources>
