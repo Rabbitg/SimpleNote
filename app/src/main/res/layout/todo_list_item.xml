@@ -14,6 +14,7 @@
         android:layout_height="wrap_content">
 
 
+
         <TextView
             android:layout_alignParentTop="true"
             android:padding="8dp"
@@ -29,6 +30,18 @@
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <TextView
+            android:text="date"
+            android:textSize="24sp"
+            android:padding="16dp"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/dateTv"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@id/editButton"
+            android:layout_width="wrap_content"
+            android:focusable="true" />
         <TextView
             android:text="@string/gmd_mode_edit"
             android:textSize="24sp"

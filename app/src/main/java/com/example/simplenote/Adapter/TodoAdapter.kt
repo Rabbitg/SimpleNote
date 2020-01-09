@@ -1,5 +1,6 @@
 package com.example.simplenote.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -14,6 +15,10 @@ import com.example.simplenote.Activity.OnDeleteListener
 import com.example.simplenote.Model.Todo
 import com.example.simplenote.R
 import io.realm.Realm
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
@@ -49,7 +54,9 @@ class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
         val editButton: TextView = itemView!!.findViewById<TextView>(R.id.editButton)
         val deleteButton: TextView = itemView!!.findViewById<TextView>(R.id.deleteButton)
         val context: Context = itemView!!.context
+        val dateTv: TextView = itemView!!.findViewById<TextView>(R.id.dateTv)
 
+        @SuppressLint("SimpleDateFormat")
         public fun bind (model: Todo, position: Int) {
 
             val parentWidth: Int = itemView.width
@@ -60,6 +67,12 @@ class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
 
             var titleText: String= model.title.toString()
             var descriptionText: String = model.description.toString()
+            var dateText : String = model.date.toString()
+
+            // 캘린더 뷰
+            val cal = Calendar.getInstance()  // Date 객체로 변환할 수 있는 기능
+            cal.timeInMillis = model.date
+            val df = SimpleDateFormat("yyyy-MM-dd")
 
             println(titleText.length)
             println(descriptionText.length)
@@ -72,6 +85,7 @@ class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
 
             this.titleTv.text = titleText
             this.descriptionTv.text = descriptionText
+            this.dateTv.text = df.format(cal.time)
 
             this.editButton.setOnClickListener {
                 val intent: Intent = Intent(context, EditTodoActivity::class.java)

@@ -8,5 +8,5 @@ open class Todo : RealmObject() {
     var id:String? = null
     var title:String? = null
     var description: String? = null
-    var date:Long =0
+    var date:Long = 0
 }

@@ -10,10 +10,12 @@
     android:padding="24dp"
     >
 
+
+
     <EditText
         android:layout_marginBottom="12dp"
         android:id="@+id/titleInput"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         tools:ignore="titleInput"
@@ -28,12 +30,26 @@
         android:hint="@string/description_hint"
         android:gravity="start|top"
         />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:orientation="horizontal">
+
 
     <Button
         android:id="@+id/submitButton"
-        android:hint="@string/submit_hint"
+        android:text="추가"
         android:layout_gravity="end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="달력" />
+
+</LinearLayout>
 
 </LinearLayout>

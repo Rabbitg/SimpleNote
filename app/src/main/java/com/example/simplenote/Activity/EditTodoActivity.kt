@@ -9,10 +9,13 @@ import com.example.simplenote.Model.Todo
 import com.example.simplenote.R
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_edit_todo.*
+import kotlinx.android.synthetic.main.todo_list_item.*
+import java.util.*
 
 class EditTodoActivity: AppCompatActivity() {
     val realm by lazy { Realm.getDefaultInstance() }
     val id by lazy { intent.getStringExtra("id") }
+    val calendar:Calendar= Calendar.getInstance() //날짜를 다룰 캘린더 객체얻기
     lateinit var todo: Todo
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +42,15 @@ class EditTodoActivity: AppCompatActivity() {
             Toast.makeText(this, "수정 되었습니다.", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+
     }
 
     private fun udateTodo () {
         this.realm.executeTransaction {
             this.todo.title = titleInput.text.toString()
             this.todo.description = descriptionInput.text.toString()
+            this.todo.date = calendar.timeInMillis
         }
     }
 }
