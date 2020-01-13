@@ -1,5 +1,6 @@
 package com.example.simplenote.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -14,6 +15,9 @@ import com.example.simplenote.Activity.OnDeleteListener
 import com.example.simplenote.Model.Todo
 import com.example.simplenote.R
 import io.realm.Realm
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
@@ -46,10 +50,13 @@ class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val titleTv: TextView = itemView!!.findViewById<TextView>(R.id.todoTitle)
         val descriptionTv: TextView = itemView!!.findViewById<TextView>(R.id.todoDescription)
+        val dateTextView : TextView = itemView!!.findViewById<TextView>(R.id.todoDate)
         val editButton: TextView = itemView!!.findViewById<TextView>(R.id.editButton)
         val deleteButton: TextView = itemView!!.findViewById<TextView>(R.id.deleteButton)
         val context: Context = itemView!!.context
 
+
+        @SuppressLint("SimpleDateFormat")
         public fun bind (model: Todo, position: Int) {
 
             val parentWidth: Int = itemView.width
@@ -60,6 +67,7 @@ class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
 
             var titleText: String= model.title.toString()
             var descriptionText: String = model.description.toString()
+            var dateText:String = model.dateText.toString()
 
             println(titleText.length)
             println(descriptionText.length)
@@ -72,8 +80,9 @@ class TodoAdapter(todos: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
 
             this.titleTv.text = titleText
             this.descriptionTv.text = descriptionText
+            this.dateTextView.text = dateText
 
-            this.editButton.setOnClickListener {
+                this.editButton.setOnClickListener {
                 val intent: Intent = Intent(context, EditTodoActivity::class.java)
                 intent.putExtra("id", model.id)
                 this.context.startActivity(intent)
